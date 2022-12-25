@@ -28,15 +28,15 @@ const Weather = (props) =>{
         <div className="top-section">
           <div className="feels-temperature">
             <p>Feels</p>
-            <p>{feelsLikeTemp} &#x2103;</p>
+            <p>{feelsLikeTemp}</p>
           </div>
           <div className="low-temperature">
             <p>Low</p>
-            <p>{lowTemp} &#x2103;</p>
+            <p>{lowTemp}</p>
           </div>
           <div className="high-temperature">
             <p>High</p>
-            <p>{highTemp} &#x2103;</p>
+            <p>{highTemp}</p>
           </div>
         </div>
         <div className="bottom-section">
