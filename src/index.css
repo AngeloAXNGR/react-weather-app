@@ -17,12 +17,20 @@ code {
     monospace;
 }
 
+header{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
+}
+
 .search-bar{
-  margin:0 20px;
+  flex:1;
+  margin-right: auto;
   display:flex;
   overflow: hidden;
   border-radius: 5px;
-  margin-top: 20px;
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
@@ -44,6 +52,38 @@ code {
 .search-icon{
   width: 32px;
   cursor: pointer;
+}
+
+
+.switch{
+  flex:0 0 35px;
+  width:30%;
+  height:1%;
+  background-color: #27aeef;
+  display:flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  border-radius: 20px;
+  align-items: center;
+  position:relative;
+  overflow:hidden;
+}
+
+.switch > p{
+  margin:0;
+  font-size: 1.5rem;
+  color:white;
+  font-weight:bold;
+}
+
+.toggle-circle{
+  height:27.5px;
+  width:27.5px;
+  background-color:white;
+  position:absolute;
+  border-radius:15px;
+  cursor:pointer;
+  transition: transform 300ms;
 }
 
 .weather-component{
@@ -69,6 +109,19 @@ code {
   margin:0;
   color:white;
 }
+
+.temperature{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position:relative;
+}
+
+#temperature-value{
+  color:white;
+}
+
 
 .weather{
   display:flex;
@@ -115,14 +168,12 @@ code {
 }
 
 
-
-/* Sample media query */
 /* Apply style if screen is bigger than 600px */
 @media only screen and (min-width: 600px){
-  .search-bar{
+  header{
     width: 80%;
     margin:0 auto;
-    margin-top: 20px;
+    margin-top: 100px;
   }
   .weather-component{
     flex-direction: row;
@@ -135,14 +186,14 @@ code {
 
 @media only screen and (min-width: 1200px){
   .weather-component,
-  .search-bar{
+  header{
     width: 50%;
   }
 }
 
 @media only screen and (min-width: 1700px){
   .weather-component,
-  .search-bar{
+  .header{
     width: 40%;
   }
 }
