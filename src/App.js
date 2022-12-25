@@ -84,7 +84,7 @@ function App() {
       timeValue= "12";
     }
     
-    timeValue += (minutes < 10) ? ":" + minutes : ":" + minutes;  // get minutes
+    timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
     timeValue += (hours >= 12) ? " P.M" : " A.M";  // get AM/PM
     return timeValue
   }
@@ -138,7 +138,7 @@ function App() {
       />
       );
   })
-  
+
 
   function toggleMeasurementSystem(){
     setMeasurementSystem(prevSystem => {return !prevSystem})
