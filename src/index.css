@@ -5,9 +5,144 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image:linear-gradient(to bottom right,#380036, #0CBABA);  
+  /* background-position: ; */
+  object-fit: contain;
+  background-repeat: no-repeat;
+  height:100vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.search-bar{
+  margin:0 20px;
+  display:flex;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  gap:10px;
+  background-color: white;
+}
+
+#search-input{
+  border: none;
+  width:100%;
+  font-size: 1.5rem;
+  padding: 5px 0;
+}
+
+#search-input:focus{
+  outline:none;
+}
+
+.search-icon{
+  width: 32px;
+  cursor: pointer;
+}
+
+.weather-component{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  gap: 32px;
+}
+
+.basic-weather-info{
+  text-align:center;
+  width: 80%;
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.basic-weather-info > h1,
+.basic-weather-info > h2,
+.weather > h2{
+  margin:0;
+  color:white;
+}
+
+.weather{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#weather-description{
+  text-transform: capitalize;
+}
+
+.detailed-weather-info{
+  background-color: rgb(247, 247, 247);
+  width: 90%;
+  border-radius: 20px;
+}
+
+.top-section,
+.bottom-section{
+  display:flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.feels-temperature,
+.low-temperature, 
+.high-temperature,
+.wind,
+.humidity{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.feels-temperature > p,
+.low-temperature > p,
+.high-temperature > p,
+.wind > p,
+.humidity > p{
+  margin:0;
+}
+
+
+
+/* Sample media query */
+/* Apply style if screen is bigger than 600px */
+@media only screen and (min-width: 600px){
+  .search-bar{
+    width: 80%;
+    margin:0 auto;
+    margin-top: 20px;
+  }
+  .weather-component{
+    flex-direction: row;
+    width: 80%;
+    margin:0 auto;
+    margin-top: 100px;
+  }
+}
+
+
+@media only screen and (min-width: 1200px){
+  .weather-component,
+  .search-bar{
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1700px){
+  .weather-component,
+  .search-bar{
+    width: 40%;
+  }
 }
