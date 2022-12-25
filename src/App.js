@@ -12,6 +12,8 @@ function App() {
   })
 
   const [location, setLocation] = React.useState('Baguio')
+  const [measurementSystem, setMeasurementSystem] = React.useState(true);
+
   const [weatherData, setWeatherData] = React.useState({
     location: '',
     temperature: '',
@@ -136,21 +138,40 @@ function App() {
       />
       );
   })
+  
+
+  function toggleMeasurementSystem(){
+    setMeasurementSystem(prevSystem => {return !prevSystem})
+    console.log(measurementSystem);
+  }
+
+  const toggleStyle = {
+    transform: measurementSystem ? "translateX(-37%)" : "translateX(63%)"
+  }
 
   return (
     <div className="app">
-      <div className="search-bar">
-          <input
-            id="search-input"
-            type="text"
-            name="location"
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}
-            />
-          <img src={require('./images/search-icon.png')} alt="" className="search-icon" onClick={handleSubmit}/>
-        </div>
+      <header>
+        <div className="search-bar">
+            <input
+              id="search-input"
+              type="text"
+              name="location"
+              onChange={handleChange}
+              onKeyPress={handleKeyPress}
+              />
+            <img src={require('./images/search-icon.png')} alt="" className="search-icon" onClick={handleSubmit}/>
+          </div>
+          <div className="switch">
+              <p>C</p>
+              <div style={toggleStyle} className="toggle-circle" onClick={toggleMeasurementSystem}>
+              </div>
+              <p>F</p>
+          </div>
+      </header>
 
         <Weather
+          isCelcius={measurementSystem}
           locationName={weatherData.location}
           temperature={weatherData.temperature}
           feelsLike={weatherData.feelsLike}
