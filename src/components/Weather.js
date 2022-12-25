@@ -2,43 +2,21 @@
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import React from 'react';
 const Weather = (props) =>{
-  const [tempMeasurement, setTempMeasurement] = React.useState(true)
-  // const [tempMeasurement, setTempMeasurement] = React.useState('metric')
 
-  const styles = {
-    left: tempMeasurement ? "23%" : "45%",
-    transform: tempMeasurement ? "translateX(-18%)" : "translateX(0)"
-  }
+  const isCelcius = props.isCelcius
+  const mainTemperature = isCelcius ? `${props.temperature} ${ReactHtmlParser("&#x2103;")}` : `${(props.temperature * (9/5) + 32).toFixed(2)} ${ReactHtmlParser("&#x2109;")}`
+  const feelsLikeTemp = isCelcius ? `${props.feelsLike} ${ReactHtmlParser("&#x2103;")}` : `${(props.feelsLike * (9/5) + 32).toFixed(2)} ${ReactHtmlParser("&#x2109;")}`
+  const lowTemp = isCelcius ? `${props.lowTemp} ${ReactHtmlParser("&#x2103;")}` : `${(props.lowTemp * (9/5) + 32).toFixed(2)} ${ReactHtmlParser("&#x2109;")}`
+  const highTemp = isCelcius ? `${props.highTemp} ${ReactHtmlParser("&#x2103;")}` : `${(props.highTemp * (9/5) + 32).toFixed(2)} ${ReactHtmlParser("&#x2109;")}`
 
-  function toggleMeasurement(){
-    setTempMeasurement(prevMeasurement => {return !prevMeasurement})
-
-  }
-
-  // return(
-  //   <div className="weather-component">
-  //     <h1 id="location">Weather in {props.locationName}</h1>
-  //     <div id="temperature">
-  //       <h2 id="temp-value">{tempMeasurement ? `${props.temperature} ${ReactHtmlParser("&#x2103;")}` : `${(props.temperature * (9/5) + 32).toFixed(2)} ${ReactHtmlParser("&#x2109;")}`}</h2>
-  //       <div className="toggle-temperature">
-  //         <p>C</p>
-  //         <div className="switch">
-  //           <div style={styles} onClick={toggleMeasurement} className="toggle-circle"></div>
-  //         </div>
-  //         <p>F</p>
-  //       </div>
-  //     </div>
-  //     <h1 id="weather-description">{props.weather}</h1>
-  //     <p id="humidity">Humidity: {props.humidity}%</p>
-  //     <p id="windspeed">Windspeed: {props.windSpeed} m/s</p>
-  //   </div>
-  // )
 
   return(
     <div className="weather-component">
       <div className="basic-weather-info">
         <h2 id="location">{props.locationName}</h2>
-        <h1 id="temperature">{props.temperature} &#x2103;</h1>
+        <div className="temperature">
+          <h1 id="temperature-value">{mainTemperature}</h1>
+        </div>
         <div className="weather">
           <img src={props.weatherIcon} alt="" />
           <h2 id="weather-description">
@@ -50,15 +28,15 @@ const Weather = (props) =>{
         <div className="top-section">
           <div className="feels-temperature">
             <p>Feels</p>
-            <p>{props.feelsLike} &#x2103;</p>
+            <p>{feelsLikeTemp} &#x2103;</p>
           </div>
           <div className="low-temperature">
             <p>Low</p>
-            <p>{props.lowTemp} &#x2103;</p>
+            <p>{lowTemp} &#x2103;</p>
           </div>
           <div className="high-temperature">
             <p>High</p>
-            <p>{props.highTemp} &#x2103;</p>
+            <p>{highTemp} &#x2103;</p>
           </div>
         </div>
         <div className="bottom-section">
