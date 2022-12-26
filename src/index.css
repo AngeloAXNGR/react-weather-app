@@ -174,36 +174,7 @@ header{
 }
 
 
-/* Apply style if screen is bigger than 600px */
-@media only screen and (min-width: 600px){
-  header{
-    width: 80%;
-    margin:0 auto;
-    margin-top: 100px;
-  }
-  .weather-component{
-    flex-direction: row;
-    width: 80%;
-    margin:0 auto;
-    margin-top: 100px;
-  }
-}
-
-
-@media only screen and (min-width: 1200px){
-  .weather-component,
-  header{
-    width: 50%;
-  }
-}
-
-@media only screen and (min-width: 1700px){
-  .weather-component,
-  .header{
-    width: 40%;
-  }
-}
-
+/* Forecast Component */
 
 
 .forecasts{
@@ -254,4 +225,73 @@ header{
 
 .forecast-temperatures > p{
   font-size:.75rem;
+}
+
+
+
+/* Apply style if screen is bigger than 600px */
+@media only screen and (min-width: 600px){
+  body{
+    height: 100vh;
+  }
+  header{
+    width: 80%;
+    margin:0 auto;
+    margin-top: 100px;
+  }
+  .weather-component{
+    flex-direction: row;
+    width: 80%;
+    margin:0 auto;
+    margin-top: 100px;
+  }
+
+}
+
+
+@media only screen and (min-width: 1000px){
+  .forecasts{
+    margin:0 auto;
+    margin-top: 40px;
+    width: 90%;
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .forecast{
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .forecast-temperatures{
+    margin:0 0 20px 0;
+  }
+}
+
+@media only screen and (min-width: 1200px){
+  .weather-component,
+  header{
+    width: 50%;
+  }
+
+  .forecasts{
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 1700px){
+  .forecasts{
+    width: 60%;
+  }
+  .weather-component,
+  .header{
+    width: 40%;
+  }
+}
+
+@media only screen and (min-width: 2100px){
+  .forecasts{
+    width: 50%;
+  }
 }
