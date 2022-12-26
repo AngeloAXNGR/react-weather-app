@@ -47,10 +47,11 @@ function App() {
       const parsedData = parseForecast(forecast);
       setForecastData(parsedData);
       console.log(forecastData);
+      console.log(forecast)
     }
 
     getWeatherData();
-    // getForecastData();
+    getForecastData();
   }, [location]);
 
   function parseWeatherData(data){
@@ -94,12 +95,16 @@ function App() {
     for(let i = 0; i < data.length; i++){
       const dateText = data[i].dt_txt.split(" ")[0]
       const timeText = data[i].dt_txt.split(" ")[1]
+      const date = new Date(dateText);
+      const weekday = ["Sun","Mon","Tue","Wed","Thur","Fri","Sat"];
       const forecastObject = 
       {
         temperature: data[i].main.temp,
-        date: dateText,
+        feelsLike: data[i].main.feels_like,
+        date: weekday[date.getDay()],
         time: timeText,
         weather: data[i].weather[0].description,
+        icon:`http://openweathermap.org/img/w/${data[i].weather[0].icon}.png`,
       }
       if(forecastObject.time === "00:00:00"){
         forecastArray.push(forecastObject)
@@ -129,12 +134,15 @@ function App() {
     setLocation(formData.location)
   }
 
-  const foreCasts = forecastData.map((data) =>{
+  const forecastList = forecastData.map((data) =>{
     return(
       <Forecast
+        isCelcius={measurementSystem}
         date={data.date}
         temperature={data.temperature}
+        feelsLike={data.feelsLike}
         weather={data.weather}
+        icon={data.icon}
       />
       );
   })
@@ -170,19 +178,24 @@ function App() {
           </div>
       </header>
 
-        <Weather
-          isCelcius={measurementSystem}
-          locationName={weatherData.location}
-          temperature={weatherData.temperature}
-          feelsLike={weatherData.feelsLike}
-          lowTemp={weatherData.lowTemp}
-          highTemp={weatherData.highTemp}
-          weather={weatherData.weather}
-          weatherIcon={weatherData.icon}
-          windSpeed={weatherData.windspeed}
-          humidity={weatherData.humidity}
-          sunset={weatherData.sunset}
-        />
+        <div className="weather-details">
+          <Weather
+            isCelcius={measurementSystem}
+            locationName={weatherData.location}
+            temperature={weatherData.temperature}
+            feelsLike={weatherData.feelsLike}
+            lowTemp={weatherData.lowTemp}
+            highTemp={weatherData.highTemp}
+            weather={weatherData.weather}
+            weatherIcon={weatherData.icon}
+            windSpeed={weatherData.windspeed}
+            humidity={weatherData.humidity}
+            sunset={weatherData.sunset}
+          />
+          <div className="forecasts">
+            {forecastList}
+          </div>
+        </div>
     </div>
   );
 }
