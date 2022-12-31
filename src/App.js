@@ -14,6 +14,9 @@ function App() {
   const [location, setLocation] = React.useState('Baguio')
   const [measurementSystem, setMeasurementSystem] = React.useState(true);
 
+  // const test = navigator.geolocation.getCurrentPosition();
+  // console.log(test);
+
   const [weatherData, setWeatherData] = React.useState({
     location: '',
     temperature: '',
@@ -31,7 +34,7 @@ function App() {
 
   React.useEffect(() => {
     async function getWeatherData(){
-      const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=c052a20244df6c36546df606ba65008a&units=metric`)
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=c052a20244df6c36546df606ba65008a&units=metric`)
       const data = await response.json();
       console.log(data);
 
@@ -41,7 +44,7 @@ function App() {
     }
 
     async function getForecastData(){
-      const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=c052a20244df6c36546df606ba65008a&units=metric`);
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=c052a20244df6c36546df606ba65008a&units=metric`);
       const data = await response.json()
       const forecast = data.list
       const parsedData = parseForecast(forecast);
@@ -66,7 +69,7 @@ function App() {
       weather: data.weather[0].description,
       humidity: data.main.humidity,
       windspeed: data.wind.speed,
-      icon:`http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
+      icon:`https://openweathermap.org/img/w/${data.weather[0].icon}.png`,
       sunset: timeStamp
     }
   }
@@ -104,7 +107,7 @@ function App() {
         date: weekday[date.getDay()],
         time: timeText,
         weather: data[i].weather[0].description,
-        icon:`http://openweathermap.org/img/w/${data[i].weather[0].icon}.png`,
+        icon:`https://openweathermap.org/img/w/${data[i].weather[0].icon}.png`,
       }
       if(forecastObject.time === "00:00:00"){
         forecastArray.push(forecastObject)
