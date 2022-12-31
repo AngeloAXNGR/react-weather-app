@@ -8,7 +8,7 @@ body {
   background-image:linear-gradient(to bottom right,#380036, #0CBABA);  
   object-fit: contain;
   background-repeat: no-repeat;
-  height:100%;
+  height:100%z;
 }
 
 code {
@@ -231,7 +231,8 @@ header{
 /* Apply style if screen is bigger than 600px */
 @media only screen and (min-width: 480px){
   body{
-    height: 100%;
+    height: 100vh;
+    padding-bottom: 20px;
   }
   header{
     width: 80%;
